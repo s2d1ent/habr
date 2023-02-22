@@ -26,64 +26,61 @@ namespace program
     }
     class Client
     {
-        Socket client;
+        Socket _client;
         HTTPHeaders Headers;
-        public Client(Socket c)
+        public Client(Socket socket)
         {
-            client = c;
-            byte[] data = new byte[1024];
+            _client = socket;
+            byte[] data = new byte[_client.ReceiveBufferSize];
             string request = "";
-            client.Receive(data);
+            _client.Receive(data);
             request += Encoding.UTF8.GetString(data);
             if (request == "")
             {
-                client.Close();
+                _client.Close();
                 return;
             }
             Headers = HTTPHeaders.Parse(request);
-            Console.WriteLine($@"[{client.RemoteEndPoint}]
-File: {Headers.File}
-Date: {DateTime.Now}");
+            Console.WriteLine($"[{_client.RemoteEndPoint}]\nFile: {Headers.File}\nDate: {DateTime.Now}");
+
             if (Headers.RealPath.IndexOf("..") != -1)
             {
                 SendError(404);
-                client.Close();
+                _client.Close();
                 return;
             }
+
             if (File.Exists(Headers.RealPath))
-                GetSheet(Headers);
+            {
+                GetSheet();
+            }
             else
+            {
                 SendError(404);
-            client.Close();
+            }
+            _client.Close();
         }
-        ~Client()
-        {
-            GC.Collect(2, GCCollectionMode.Forced);
-        }
-        public void GetSheet(HTTPHeaders head)
+        public void GetSheet()
         {
             try
             {
-                string content_type = GetContentType(head);
-                FileStream fs = new FileStream(head.RealPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                string headers = $"HTTP/1.1 200 OK\nContent-type: {content_type}\nContent-Length: {fs.Length}\n\n";
+                string contentType = GetContentType();
+                FileStream fs = new FileStream(Headers.RealPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                string headers = $"HTTP/1.1 200 OK\nContent-type: {contentType}\nContent-Length: {fs.Length}\n\n";
                 // OUTPUT HEADERS
-                byte[] data_headers = Encoding.UTF8.GetBytes(headers);
-                client.Send(data_headers, data_headers.Length, SocketFlags.None);
+                byte[] data = Encoding.UTF8.GetBytes(headers);
+                _client.Send(data, data.Length, SocketFlags.None);
                 // OUTPUT CONTENT
-                while (fs.Position < fs.Length)
-                {
-                    byte[] data = new byte[1024];
-                    int length = fs.Read(data, 0, data.Length);
-                    client.Send(data, data.Length, SocketFlags.None);
-                }
+                data = new byte[fs.Length];
+                int length = fs.Read(data, 0, data.Length);
+                _client.Send(data, data.Length, SocketFlags.None);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Func: GetSheet()    link: {head.RealPath}\nException: {ex}/nMessage: {ex.Message}");
+                Console.WriteLine($"Func: GetSheet()    link: {Headers.RealPath}\nException: {ex}/nMessage: {ex.Message}");
             }
         }
-        string GetContentType(HTTPHeaders head)
+        string GetContentType()
         {
             string result = "";
             string format = HTTPHeaders.FileExtention(Headers.File);
@@ -138,8 +135,8 @@ Date: {DateTime.Now}");
             string html = $"<html><head><title></title></head><body><h1>Error {code}</h1></body></html>";
             string headers = $"HTTP/1.1 {code} OK\nContent-type: text/html\nContent-Length: {html.Length}\n\n{html}";
             byte[] data = Encoding.UTF8.GetBytes(headers);
-            client.Send(data, data.Length, SocketFlags.None);
-            client.Close();
+            _client.Send(data, data.Length, SocketFlags.None);
+            _client.Close();
         }
     }
 }

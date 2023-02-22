@@ -1,0 +1,16 @@
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket.deps.json
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket.runtimeconfig.json
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket.runtimeconfig.dev.json
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket.dll
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/bin/Debug/net5.0/WebSocket.pdb
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.csproj.AssemblyReference.cache
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.GeneratedMSBuildEditorConfig.editorconfig
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.AssemblyInfoInputs.cache
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.AssemblyInfo.cs
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.csproj.CoreCompileInputs.cache
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.dll
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/refint/WebSocket.dll
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.pdb
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/WebSocket.genruntimeconfig.cache
+/home/viktor/hdd/habr/WebServer_Socket/WebSocket/obj/Debug/net5.0/ref/WebSocket.dll

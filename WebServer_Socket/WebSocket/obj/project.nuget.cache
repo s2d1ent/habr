@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F5S1tz4kJLYND4nXhsA2XKapL7HgIdV3h1iNTLI2TlzDwmnqX/nseYcDiHZ2ihed+IIcLENbupo/5xZxUUn7HQ==",
+  "dgSpecHash": "GwC0yEMtyqvBJ+EVeC2JPp4uDVq7e/d6AH/zYiNkes7s5cPgRf+c3ZUjaU2VD32doz9rKVCFCpxtOJLwRLDDDA==",
   "success": true,
-  "projectFilePath": "D:\\Socket\\WebSocket\\WebSocket\\WebSocket.csproj",
+  "projectFilePath": "/home/viktor/hdd/habr/WebServer_Socket/WebSocket/WebSocket.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
